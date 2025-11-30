@@ -1,6 +1,5 @@
 import { LayoutGrid, Leaf, Egg, Fish, Cake } from 'lucide-react';
 
-// Static UI Configuration (Keep these here)
 export const allCategories = [
     { id: "all", name: "All Products", icon: "LayoutGrid" },
     { id: "fruits-vegetables", name: "Fruits & Vegetables", icon: "Leaf" },
@@ -15,7 +14,6 @@ export const dietaryNeeds = [
     { id: "vegan", name: "Vegan" },
 ];
 
-// --- HELPER FUNCTIONS ---
 
 export const getCategoryIcon = (iconName) => {
     const icons = { LayoutGrid, Leaf, Egg, Fish, Cake };

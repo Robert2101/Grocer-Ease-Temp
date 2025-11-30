@@ -15,28 +15,24 @@ const useAppStore = create((set, get) => ({
     cartItems: [],
     login: async (email, password) => {
         try {
-            // 1. Fetch user by email using json-server filtering
             const response = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}`);
             const users = await response.json();
 
-            // 2. Check if user exists
             if (users.length === 0) {
                 toast.error("User not found. Please sign up.");
-                return false; // Return false to indicate failure
+                return false; 
             }
 
             const user = users[0];
 
-            // 3. Check password
             if (user.password !== password) {
                 toast.error("Incorrect password.");
                 return false;
             }
 
-            // 4. Success! Update state
             set({ isLoggedIn: true, user: user });
             toast.success(`Welcome back, ${user.name}!`);
-            return true; // Return true to indicate success
+            return true; 
 
         } catch (error) {
             console.error("Login Error:", error);
@@ -46,7 +42,6 @@ const useAppStore = create((set, get) => ({
     },
     register: async (name, email, password) => {
         try {
-            // 1. Check if email already exists
             const checkResponse = await fetch(`${API_URL}/users?email=${encodeURIComponent(email)}`);
             const existingUsers = await checkResponse.json();
 
@@ -55,16 +50,13 @@ const useAppStore = create((set, get) => ({
                 return false;
             }
 
-            // 2. Prepare new user object
-            // Note: json-server automatically creates a unique 'id'
             const newUser = {
                 name,
                 email,
                 password,
-                joined: new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }) // e.g., "November 28, 2025"
+                joined: new Date().toLocaleDateString("en-in", { year: 'numeric', month: 'long', day: 'numeric' }) 
             };
 
-            // 3. POST to json-server
             const response = await fetch(`${API_URL}/users`, {
                 method: 'POST',
                 headers: {

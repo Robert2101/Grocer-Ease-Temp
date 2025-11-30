@@ -1,11 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../data/staticData";
-import useAppStore from "../store/appStore"; // Import the zustand store
+import useAppStore from "../store/appStore";
 import { ChevronLeft } from "lucide-react";
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
-    const addToCart = useAppStore((state) => state.addToCart); // Select the action
+    const addToCart = useAppStore((state) => state.addToCart);
     const product = getProductById(productId);
 
     if (!product) {

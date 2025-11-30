@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 import useAppStore from "../store/appStore.js";
 
 const ProductCard = ({ product }) => {
-    const addToCart = useAppStore((state) => state.addToCart);
+    const {addToCart} = useAppStore()
 
     return (
         <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden flex flex-col relative">

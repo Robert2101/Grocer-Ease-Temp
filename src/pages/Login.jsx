@@ -15,12 +15,10 @@ const Login = () => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Call the store action with user input
         const success = await login(email, password);
 
         setIsLoading(false);
 
-        // Only redirect if login was successful
         if (success) {
             navigate("/profile");
         }

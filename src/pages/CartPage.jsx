@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import useAppStore from "../store/appStore";
-import { Trash2, Plus, Minus } from "lucide-react"; // Import Plus and Minus
+import { Trash2, Plus, Minus } from "lucide-react"; 
 
 const CartPage = () => {
-    // Get state and actions from the store
     const {cartItems, removeFromCart, incrementQuantity, decrementQuantity} = useAppStore();
     
     const cartTotal = cartItems.reduce(

@@ -1,25 +1,21 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import useAppStore from "../store/appStore"; // Ensure path matches your file
+import useAppStore from "../store/appStore"; 
 import { ChevronLeft, Loader } from "lucide-react";
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
 
-    // Destructure state and actions from the store
     const { products, addToCart, fetchProducts, isLoading } = useAppStore();
 
-    // Fetch products if they aren't loaded yet (e.g., on page refresh)
     useEffect(() => {
         if (products.length === 0) {
             fetchProducts();
         }
     }, [products.length, fetchProducts]);
 
-    // Find the specific product from the store array
     const product = products.find((p) => p.id === productId);
 
-    // 1. Loading State
     if (isLoading && !product) {
         return (
             <div className="flex h-[50vh] justify-center items-center">
@@ -28,7 +24,6 @@ const ProductDetailsPage = () => {
         );
     }
 
-    // 2. Not Found State (Data loaded, but ID doesn't exist)
     if (!product && !isLoading) {
         return (
             <div className="text-center py-12">
@@ -41,7 +36,6 @@ const ProductDetailsPage = () => {
         );
     }
 
-    // 3. Success State
     return (
         <div className="container mx-auto px-4 py-8">
             <Link
@@ -53,7 +47,6 @@ const ProductDetailsPage = () => {
             </Link>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-                {/* Product Image */}
                 <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                     <img
                         src={product.image}
@@ -62,7 +55,6 @@ const ProductDetailsPage = () => {
                     />
                 </div>
 
-                {/* Product Info */}
                 <div className="flex flex-col justify-center">
                     <h1 className="text-4xl font-bold mb-3 text-gray-800">{product.name}</h1>
 
@@ -79,7 +71,6 @@ const ProductDetailsPage = () => {
                         {product.description}
                     </p>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-8">
                         {product.isOrganic && (
                             <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
